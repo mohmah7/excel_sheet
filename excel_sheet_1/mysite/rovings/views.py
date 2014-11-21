@@ -88,7 +88,7 @@ def search(request):
 
     else:
         message = 'You submitted an empty form.'
-    #p = Patient(ptname = message,pub_date=timezone.now())
-    #p.save()
+    p = Patient(ptname = message,pub_date=timezone.now())
+    p.save()
     #return HttpResponse(message)
     return render(request, "rovings/search_form.html",{'message':message})
