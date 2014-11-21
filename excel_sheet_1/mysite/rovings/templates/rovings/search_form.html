@@ -4,14 +4,17 @@
 </head>
 
 <body>
-
+    <li><a href="/rovings/{{ message }}/">{{ message }}</a></li>
     <li><a href="/rovings/{{ message }}/">{{ 'Enter pt roving details' }}</a></li>
-    <form action="" method="POST">{% csrf_token %}
+    <form action="" method="GET">{% csrf_token %}
         Patient name: <br>
         <input type="text" name="q">
         <br>
         Diagnosis : <br>
         <input type="text" name="p">
+        <br>
+        Hospital :<br>
+        <input type="text" name="h">
         <br><br>
         <input type="submit" value="Submit information">
     </form>

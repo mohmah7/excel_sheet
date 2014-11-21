@@ -1,7 +1,7 @@
 from django.shortcuts import render , get_object_or_404
 from django.http import HttpResponse
 from django.template import RequestContext, loader
-from rovings.models import Patient
+from rovings.models import Patient , Diagnosis, Hospital
 from django.shortcuts import render
 from django.http import Http404
 
@@ -57,7 +57,7 @@ from django.utils import timezone
 def hello(request):
     return HttpResponse("Hello world")
 
-def get_name(request):
+"""def get_name(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
@@ -75,7 +75,7 @@ def get_name(request):
     else:
         form = Patient()
 
-    return render(request, 'rovings/index.html', {'form': form})
+    return render(request, 'rovings/index.html', {'form': form})"""
 
 def search_form(request):
     return render(request, 'rovings/search_form.html')
@@ -83,13 +83,25 @@ def search_form(request):
 from django.views import generic
 
 def search(request):
-    if 'q' in request.POST:
+    msg_diagnosis=''
+    msg_hospital =''
+    if 'q' in request.GET:
         #message = 'You searched for: %r' % request.POST['q']
-        message = request.POST['q']
+        message = request.GET['q']
+        msg_diagnosis = request.GET['p']
+        msg_hospital=request.GET['h']
+        p = Patient(ptname = message,pub_date=timezone.now())
+        p.save()
+        p.diagnosis_set.create(diagnosis=msg_diagnosis)
+        p.hospital_set.create(hospital_name=msg_hospital)
 
     else:
         message = 'You submitted an empty form.'
-    p = Patient(ptname = message,pub_date=timezone.now())
-    p.save()
+
+    #if 'p' in request.POST:
+        #msg_diagnosis = request.POST['p']
+    #msg_hospital = request.POST['h']
+
+
     #return HttpResponse(message)
-    return render(request, "rovings/search_form.html",{'message':message})
+    return render(request, "rovings/search_form.html",{'message':message,'msg_diagnosis':msg_diagnosis})

@@ -9,8 +9,8 @@ from rovings import views
 urlpatterns = patterns('',
     # ex: /polls/
     url(r'^$', views.index, name='index'),
-    url(r'^$', views.get_name, name='index'),
-    url(r'^search_form/$', views.search_form, name ='search_form'),
+    #url(r'^$', views.get_name, name='index'),
+    #url(r'^search_form/$', views.search_form, name ='search_form'),
     url(r'^search/$', views.search),
     url(r'^hello/$', views.hello, name='hello'),
     # ex: /polls/5/
