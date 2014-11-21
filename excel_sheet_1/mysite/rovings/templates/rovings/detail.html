@@ -1,0 +1,14 @@
+
+
+<h1>{{ patient.ptname }}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'rovings:vote' patient.id %}" method="post">
+{% csrf_token %}
+{% for diagnosis in patient.diagnosis_set.all %}
+    <input type="text" name="diagnosis" id="diagnosis{{ forloop.counter }}" value="enter diagnosis" />
+    <label for="diagnosis{{ forloop.counter }}">{{ diagnosis.diagnosis_text }}</label><br />
+{% endfor %}
+<input type="submit" value="Vote" />
+</form>

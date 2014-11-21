@@ -1,0 +1,20 @@
+<html>
+<head>
+    <title>Search</title>
+</head>
+
+<body>
+
+    <li><a href="/rovings/{{ message }}/">{{ 'Enter pt roving details' }}</a></li>
+    <form action="" method="POST">{% csrf_token %}
+        Patient name: <br>
+        <input type="text" name="q">
+        <br>
+        Diagnosis : <br>
+        <input type="text" name="p">
+        <br><br>
+        <input type="submit" value="Submit information">
+    </form>
+</body>
+</html>
+
