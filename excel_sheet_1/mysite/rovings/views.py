@@ -84,7 +84,8 @@ from django.views import generic
 
 def search(request):
     if 'q' in request.POST:
-        message = 'You searched for: %r' % request.POST['q']
+        #message = 'You searched for: %r' % request.POST['q']
+        message = request.POST['q']
 
     else:
         message = 'You submitted an empty form.'
