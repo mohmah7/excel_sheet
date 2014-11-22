@@ -11,7 +11,7 @@ urlpatterns = patterns('',
     url(r'^$', views.index, name='index'),
     #url(r'^$', views.get_name, name='index'),
     #url(r'^search_form/$', views.search_form, name ='search_form'),
-    url(r'^search/$', views.search),
+    url(r'^add_pt/$', views.add_pt),
     url(r'^hello/$', views.hello, name='hello'),
     # ex: /polls/5/
     url(r'^(?P<patient_id>\d+)/$', views.detail, name='detail'),

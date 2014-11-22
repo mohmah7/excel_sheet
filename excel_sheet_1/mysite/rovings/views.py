@@ -21,7 +21,7 @@ def index(request):
     return HttpResponse(template.render(context))
 
 def index(request):
-    latest_poll_list = Patient.objects.all().order_by('-pub_date')[:5]
+    latest_poll_list = Patient.objects.all().order_by('-pub_date')
     #p= Patient(ptname ="mefnamicacid",pub_date=timezone.now())
     #p.save()
     context = {'latest_poll_list': latest_poll_list}
@@ -77,12 +77,14 @@ def hello(request):
 
     return render(request, 'rovings/index.html', {'form': form})"""
 
-def search_form(request):
-    return render(request, 'rovings/search_form.html')
+#def search_form(request):
+#    return render(request, 'rovings/add_pt.html')
 
 from django.views import generic
 
-def search(request):
+def add_pt(request):
+    #if request.method== get
+
     msg_diagnosis=''
     msg_hospital =''
     if 'q' in request.GET:
@@ -104,4 +106,4 @@ def search(request):
 
 
     #return HttpResponse(message)
-    return render(request, "rovings/search_form.html",{'message':message,'msg_diagnosis':msg_diagnosis})
+    return render(request, "rovings/add_pt.html",{'message':message,'msg_diagnosis':msg_diagnosis})
