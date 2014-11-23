@@ -74,21 +74,26 @@ def add_pt(request):
 
 def manage_patients(request, patient_id=None):
     patient = None
+    diagnosis = None
     message = "Saving new patient"
     if patient_id:
         patient = get_object_or_404(Patient, pk=patient_id)
+        diagnosis = get_object_or_404(Diagnosis)
 
     PatientForm = modelform_factory(Patient)
+    DiagnosisForm = modelform_factory(Diagnosis)
     if request.method == 'POST':
         form = PatientForm(request.POST, instance=patient)
+        form_diagnosis = DiagnosisForm(request.POST, instance = diagnosis)
         if form.is_valid():
             patient = form.save()
             message = "Successfuly saved patient"
             return HttpResponseRedirect(reverse('rovings:patient_edit', kwargs={'patient_id':str(patient.pk)}))   
     else:
         form = PatientForm(instance=patient)
+        form_diagnosis = DiagnosisForm(instance=diagnosis)
 
     if patient:
         message = "Editing patient"
 
-    return render(request, "rovings/add_pt.html", {"form": form, 'message':message})
+    return render(request, "rovings/add_pt.html", {"form": form, 'message':message, 'form_diagnosis':form_diagnosis})
