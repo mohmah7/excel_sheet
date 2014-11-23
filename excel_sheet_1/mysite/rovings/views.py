@@ -1,24 +1,13 @@
 from django.shortcuts import render , get_object_or_404
 from django.http import HttpResponse
 from django.template import RequestContext, loader
-from rovings.models import Patient , Diagnosis, Hospital
+from django.forms.models import modelform_factory
 from django.shortcuts import render
-from django.http import Http404
+from django.http import HttpResponseRedirect, Http404
+from django.utils import timezone
+from django.core.urlresolvers import reverse
 
-# Create your views here.
-
-"""def index(request):
-    return HttpResponse("Hello, world. You're at the poll index.")"""
-
-"""def index(request):
-    latest_poll_list = Patient.objects.order_by('-pub_date')[:5]
-    #p= Patient(ptname ="mefnamicacid",pub_date=timezone.now())
-    #p.save()
-    template = loader.get_template('rovings/index.html')
-    context = RequestContext(request, {
-        'latest_poll_list': latest_poll_list,
-    })
-    return HttpResponse(template.render(context))"""
+from rovings.models import Patient , Diagnosis, Hospital
 
 def index(request):
     latest_poll_list = Patient.objects.all().order_by('-pub_date')
@@ -48,40 +37,11 @@ def results(request, patient_id):
 def vote(request, patient_id):
     return HttpResponse("You're voting on poll %s." % patient_id)
 
-
-from django.shortcuts import render
-from django.http import HttpResponseRedirect
-
-from django.utils import timezone
-
 def hello(request):
     return HttpResponse("Hello world")
 
-"""def get_name(request):
-    # if this is a POST request we need to process the form data
-    if request.method == 'POST':
-        # create a form instance and populate it with data from the request:
-        form = Patient(request.POST)
-        # check whether it's valid:
-        if form.is_valid():
-            # process the data in form.cleaned_data as required
-            content = form.cleaned_data['ptname']
-            post = m.Post.objects.create(ptname=ptname)
-            # ...
-            # redirect to a new URL:
-            return HttpResponseRedirect('/thanks/')
-
-    # if a GET (or any other method) we'll create a blank form
-    else:
-        form = Patient()
-
-    return render(request, 'rovings/index.html', {'form': form})"""
-
 def search_form(request):
     return render(request, 'rovings/add_pt.html')
-
-from django.views import generic
-from django.core.urlresolvers import reverse
 
 def add_pt(request):
 
@@ -112,18 +72,23 @@ def add_pt(request):
     #return HttpResponse(message)
     #return render(request, "rovings/add_pt.html",{'message':message,'msg_diagnosis':msg_diagnosis})
 
-from django.forms.models import modelformset_factory
-from django.shortcuts import render_to_response
+def manage_patients(request, patient_id=None):
+    patient = None
+    message = "Saving new patient"
+    if patient_id:
+        patient = get_object_or_404(Patient, pk=patient_id)
 
-"""def manage_patients(request):
-    PatientFormSet = modelformset_factory(Patient)
+    PatientForm = modelform_factory(Patient)
     if request.method == 'POST':
-        formset = PatientFormSet(request.POST, request.FILES)
-        if formset.is_valid():
-            formset.save()
-            # do something.
+        form = PatientForm(request.POST, instance=patient)
+        if form.is_valid():
+            patient = form.save()
+            message = "Successfuly saved patient"
+            return HttpResponseRedirect(reverse('rovings:patient_edit', kwargs={'patient_id':str(patient.pk)}))   
     else:
-        formset = PatientFormSet()
-    return render_to_response("add_pt.html", {
-        "formset": formset,
-    })"""
+        form = PatientForm(instance=patient)
+
+    if patient:
+        message = "Editing patient"
+
+    return render(request, "rovings/add_pt.html", {"form": form, 'message':message})

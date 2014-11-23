@@ -29,7 +29,7 @@ class PollAdmin(admin.ModelAdmin):
         ('Date information', {'fields': ['pub_date'], 'classes': ['collapse']}),
     ]
     inlines = [DiagnosisInline, HospitalInline]
-    list_display = ('ptname', 'pub_date', 'was_published_recently')
+    list_display = ('ptname', 'pub_date')
     list_filter = ['ptname']
     search_fields = ['ptname']
 

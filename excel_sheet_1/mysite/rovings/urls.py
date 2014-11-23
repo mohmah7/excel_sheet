@@ -20,4 +20,8 @@ urlpatterns = patterns('',
     url(r'^(?P<patient_id>\d+)/results/$', views.results, name='results'),
     # ex: /polls/5/vote/
     url(r'^(?P<patient_id>\d+)/vote/$', views.vote, name='vote'),
+
+    url(r'^patients/new/$', views.manage_patients, name='patient_new'),
+    url(r'^patients/(?P<patient_id>\d+)/edit/$', views.manage_patients, name='patient_edit'),
+
 )

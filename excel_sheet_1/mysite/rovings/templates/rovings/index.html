@@ -5,21 +5,10 @@
     {% endfor %}
     </ul>
 {% else %}
-    <p>No polls are available.</p>
+    <p>No Patients are available.</p>
 {% endif %}
 
-<!form action="/your-name/" method="post">
-    <!label for="your_name">Enter Patient name: <!/label>
-    <!input id="your_name" type="text" name="your_name" value="{{ current_name }}">
-    <!input type="submit" value="OK">
-<!/form>
 
-<!form action="/your-name/" method="post">
-    <!label for="your_name">Enter Diagnosis: </!label>
-    <!input id="your_name" type="text" name="your_name" value="{{ current_name }}">
-    <!a href="/rovings/{{ patient.id }}/">{{ patient.ptname }}<!/a>
-    <!input type="submit" value="OK">
-<!/form>
 
 <!form action="/ptname/" method="post">
     {% csrf_token %}
