@@ -7,10 +7,10 @@ from django.http import Http404
 
 # Create your views here.
 
-def index(request):
-    return HttpResponse("Hello, world. You're at the poll index.")
+"""def index(request):
+    return HttpResponse("Hello, world. You're at the poll index.")"""
 
-def index(request):
+"""def index(request):
     latest_poll_list = Patient.objects.order_by('-pub_date')[:5]
     #p= Patient(ptname ="mefnamicacid",pub_date=timezone.now())
     #p.save()
@@ -18,7 +18,7 @@ def index(request):
     context = RequestContext(request, {
         'latest_poll_list': latest_poll_list,
     })
-    return HttpResponse(template.render(context))
+    return HttpResponse(template.render(context))"""
 
 def index(request):
     latest_poll_list = Patient.objects.all().order_by('-pub_date')
@@ -77,16 +77,18 @@ def hello(request):
 
     return render(request, 'rovings/index.html', {'form': form})"""
 
-#def search_form(request):
-#    return render(request, 'rovings/add_pt.html')
+def search_form(request):
+    return render(request, 'rovings/add_pt.html')
 
 from django.views import generic
+from django.core.urlresolvers import reverse
 
 def add_pt(request):
-    #if request.method== get
 
     msg_diagnosis=''
     msg_hospital =''
+    #if 'q' in request.GET:
+
     if 'q' in request.GET:
         #message = 'You searched for: %r' % request.POST['q']
         message = request.GET['q']
@@ -96,9 +98,11 @@ def add_pt(request):
         p.save()
         p.diagnosis_set.create(diagnosis=msg_diagnosis)
         p.hospital_set.create(hospital_name=msg_hospital)
+        return HttpResponseRedirect(reverse('rovings:index'))
 
     else:
         message = 'You submitted an empty form.'
+        return render(request, "rovings/add_pt.html",{'message':message})
 
     #if 'p' in request.POST:
         #msg_diagnosis = request.POST['p']
@@ -106,4 +110,20 @@ def add_pt(request):
 
 
     #return HttpResponse(message)
-    return render(request, "rovings/add_pt.html",{'message':message,'msg_diagnosis':msg_diagnosis})
+    #return render(request, "rovings/add_pt.html",{'message':message,'msg_diagnosis':msg_diagnosis})
+
+from django.forms.models import modelformset_factory
+from django.shortcuts import render_to_response
+
+def manage_patients(request):
+    PatientFormSet = modelformset_factory(Patient)
+    if request.method == 'POST':
+        formset = PatientFormSet(request.POST, request.FILES)
+        if formset.is_valid():
+            formset.save()
+            # do something.
+    else:
+        formset = PatientFormSet()
+    return render_to_response("add_pt.html", {
+        "formset": formset,
+    })
