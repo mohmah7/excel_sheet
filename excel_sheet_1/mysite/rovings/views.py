@@ -115,7 +115,7 @@ def add_pt(request):
 from django.forms.models import modelformset_factory
 from django.shortcuts import render_to_response
 
-def manage_patients(request):
+"""def manage_patients(request):
     PatientFormSet = modelformset_factory(Patient)
     if request.method == 'POST':
         formset = PatientFormSet(request.POST, request.FILES)
@@ -126,4 +126,4 @@ def manage_patients(request):
         formset = PatientFormSet()
     return render_to_response("add_pt.html", {
         "formset": formset,
-    })
+    })"""
