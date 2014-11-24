@@ -4,10 +4,29 @@ import datetime
 
 # Create your models here.
 
+
+
 class Patient(models.Model):
+    JUSTIFICATION = (
+        ('JS', 'Justified'),
+        ('UNJ', 'UnJusitfied'),
+    )
     ptname = models.CharField(max_length=100)
     visit_date = models.DateField('date visited')
+    admission_date = models.DateField('Admission Date')
+    discharge_date = models.DateField('Discharge Date')
     app_number = models.CharField(max_length =20, default = None)
+    age = models.IntegerField(default =0)
+    days_requested = models.IntegerField(default = 0)
+    days_approved = models.IntegerField(default =0)
+    policy_number = models.IntegerField(default =0)
+    notes = models.TextField(max_length=2000, blank = True)
+    justified = models.CharField(max_length =15, choices = JUSTIFICATION)
+    benefit_lower_limit = models.CharField(max_length = 15, default ='Nil')
+    benefit_upper_limit = models.CharField(max_length = 15, default = 'Nil')
+    benifit = models.CharField(max_length = 15, default = 'Nil')
+    app_doctor = models.CharField(max_length = 20, default = 'Dr. Mohamed Mahmoud')
+    initiator = models.CharField(max_length = 20, default = 'RC UP')
 
     def __unicode__(self):  # Python 3: def __str__(self):
         return self.ptname
@@ -25,7 +44,15 @@ class Diagnosis(models.Model):
         return self.diagnosis
 
 class Hospital(models.Model):
+    HOSPITAL_CHOICES = (
+    ('ASTOON','Astoon'),
+    ('AL DOSSARY','AlDossary'),
+    ('FAKHRY','Fakhry'),
+    ('AL MANA','Al Mana'),
+    ('AL YOUSEF','Al Yousef'),
+    ('AL SALAMA','Al Salama'),
+    )
     patient = models.ForeignKey(Patient)
-    hospital_name = models.CharField(max_length = 100)
+    hospital_name = models.CharField(max_length = 100, choices=HOSPITAL_CHOICES)
     def __unicode__(self):
         return self.hospital_name
