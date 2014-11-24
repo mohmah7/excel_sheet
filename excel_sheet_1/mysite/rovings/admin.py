@@ -26,17 +26,17 @@ class HospitalInline(admin.TabularInline):
 class PollAdmin(admin.ModelAdmin):
     fieldsets = [
         (None,               {'fields': ['ptname']}),
-        ('Date information', {'fields': ['pub_date'], 'classes': ['collapse']}),
+        ('Date information', {'fields': ['visit_date'], 'classes': ['collapse']}),
     ]
     inlines = [DiagnosisInline, HospitalInline]
-    list_display = ('ptname', 'pub_date')
+    list_display = ('ptname', 'visit_date')
     list_filter = ['ptname']
     search_fields = ['ptname']
 
 """class PollAdmin(admin.ModelAdmin):
     fieldsets = [
         (None,               {'fields': ['ptname']}),
-        ('Date information', {'fields': ['pub_date'], 'classes': ['collapse']}),
+        ('Date information', {'fields': ['visit_date'], 'classes': ['collapse']}),
     ]"""
 
 admin.site.register(Patient,PollAdmin)

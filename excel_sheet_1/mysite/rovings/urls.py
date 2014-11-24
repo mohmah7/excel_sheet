@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, url
 
 from rovings import views
+#from rovings.views import MyFormView
 
 """urlpatterns = patterns('',
     url(r'^$', views.index, name='index')
@@ -23,5 +24,7 @@ urlpatterns = patterns('',
 
     url(r'^patients/new/$', views.manage_patients, name='patient_new'),
     url(r'^patients/(?P<patient_id>\d+)/edit/$', views.manage_patients, name='patient_edit'),
+    #url(r'^patients/new/$', MyFormView.as_view(), name='patient_new'),
+
 
 )

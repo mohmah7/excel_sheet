@@ -6,6 +6,9 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect, Http404
 from django.utils import timezone
 from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
+from django.views.generic import View
 
 from rovings.models import Patient , Diagnosis, Hospital
 
@@ -75,28 +78,74 @@ def add_pt(request):
 def manage_patients(request, patient_id=None):
     patient = None
     diagnosis = None
+    hospital = None
     message = "Saving new patient"
     if patient_id:
         patient = get_object_or_404(Patient, pk=patient_id)
         diagnosis = get_object_or_404(Diagnosis , pk=patient_id)
+        hospital = get_object_or_404(Hospital)
 
     PatientForm = modelform_factory(Patient)
     DiagnosisForm = modelform_factory(Diagnosis, fields =('diagnosis','votes',))
+    HospitalForm = modelform_factory(Hospital, fields = ('hospital_name',))
     if request.method == 'POST':
         form = PatientForm(request.POST, instance=patient)
         form_diagnosis = DiagnosisForm(request.POST, instance = diagnosis)
-        if form.is_valid() & form_diagnosis.is_valid():
+        form_hospital = HospitalForm(request.POST, instance = hospital)
+        if form.is_valid() & form_diagnosis.is_valid() & form_hospital.is_valid():
             patient = form.save()
             patient_diagnosis = form_diagnosis.save(commit = False)
+            patient_hospital = form_hospital.save(commit = False)
             patient_diagnosis.patient=patient
+            patient_hospital.patient = patient
             patient_diagnosis.save()
+            patient_hospital.save()
             message = "Successfuly saved patient"
             return HttpResponseRedirect(reverse('rovings:patient_edit', kwargs={'patient_id':str(patient.pk)}))   
     else:
         form = PatientForm(instance=patient)
         form_diagnosis = DiagnosisForm(instance=diagnosis)
+        form_hospital = HospitalForm(instance = hospital)
 
     if patient:
         message = "Editing patient"
 
-    return render(request, "rovings/add_pt.html", {"form": form, 'message':message, 'form_diagnosis':form_diagnosis})
+    return render(request, "rovings/add_pt.html", {"form": form, 'message':message, 'form_diagnosis':form_diagnosis, 'form_hospital':form_hospital,})
+
+"""class MyFormView(View):
+    form_class = Patient
+    initial = {'key': 'value'}
+    template_name = 'rovings/add_pt.html'
+
+    def get(self, request, *args, **kwargs):
+        form = self.form_class()
+        return render(request, self.template_name, {'form': form})
+
+    def manage_patients(request, patient_id=None):
+        patient = None
+        diagnosis = None
+        message = "Saving new patient"
+        if patient_id:
+            patient = get_object_or_404(Patient, pk=patient_id)
+            diagnosis = get_object_or_404(Diagnosis , pk=patient_id)
+
+        PatientForm = modelform_factory(Patient)
+        DiagnosisForm = modelform_factory(Diagnosis, fields =('diagnosis','votes',))
+        if request.method == 'POST':
+            form = PatientForm(request.POST, instance=patient)
+            form_diagnosis = DiagnosisForm(request.POST, instance = diagnosis)
+            if form.is_valid() & form_diagnosis.is_valid():
+                patient = form.save()
+                patient_diagnosis = form_diagnosis.save(commit = False)
+                patient_diagnosis.patient=patient
+                patient_diagnosis.save()
+                message = "Successfuly saved patient"
+                return HttpResponseRedirect(reverse('rovings:patient_edit', kwargs={'patient_id':str(patient.pk)}))
+        else:
+            form = PatientForm(instance=patient)
+            form_diagnosis = DiagnosisForm(instance=diagnosis)
+
+        if patient:
+            message = "Editing patient"
+
+        return render(request, "rovings/add_pt.html", {"form": form, 'message':message, 'form_diagnosis':form_diagnosis})"""

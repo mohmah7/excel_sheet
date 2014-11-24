@@ -6,7 +6,9 @@ import datetime
 
 class Patient(models.Model):
     ptname = models.CharField(max_length=100)
-    pub_date = models.DateField('date published')
+    visit_date = models.DateField('date visited')
+    app_number = models.CharField(max_length =20, default = None)
+
     def __unicode__(self):  # Python 3: def __str__(self):
         return self.ptname
     """def was_published_recently(self):
