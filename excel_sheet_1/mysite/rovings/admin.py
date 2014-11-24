@@ -26,8 +26,22 @@ class HospitalInline(admin.TabularInline):
 class PollAdmin(admin.ModelAdmin):
     fieldsets = [
         (None,               {'fields': ['ptname']}),
-        ('Date information', {'fields': ['visit_date'], 'classes': ['collapse']}),
+        ('Visit Date', {'fields': ['visit_date'], 'classes': ['collapse']}),
         ('Approval Number',{'fields':['app_number']}),
+        ('Admission Date', {'fields': ['admission_date']}),
+        ('Discharge Date', {'fields':['discharge_date']}),
+        ('Age', {'fields': ['age']}),
+        ('Days Requested', {'fields':['days_requested']}),
+        ('Days Approved', {'fields':['days_approved']}),
+        ('GRH',{'fields':['policy_number']}),
+        ('Notes',{'fields':['notes']}),
+        ('Justified',{'fields':['justified']}),
+        ('Benifit Lower Limit',{'fields':['benefit_lower_limit']}),
+        ('Benefit Upper Limit',{'fields':['benefit_upper_limit']}),
+        ('Benefit',{'fields':['benifit']}),
+        ('Approval Doctor',{'fields':['app_doctor']}),
+        ('Initiator',{'fields':['initiator']}),
+
     ]
     inlines = [DiagnosisInline, HospitalInline]
     list_display = ('ptname', 'visit_date','app_number')
