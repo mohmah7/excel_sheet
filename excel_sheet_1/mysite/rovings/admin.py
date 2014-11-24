@@ -27,9 +27,10 @@ class PollAdmin(admin.ModelAdmin):
     fieldsets = [
         (None,               {'fields': ['ptname']}),
         ('Date information', {'fields': ['visit_date'], 'classes': ['collapse']}),
+        ('Approval Number',{'fields':['app_number']}),
     ]
     inlines = [DiagnosisInline, HospitalInline]
-    list_display = ('ptname', 'visit_date')
+    list_display = ('ptname', 'visit_date','app_number')
     list_filter = ['ptname']
     search_fields = ['ptname']
 
