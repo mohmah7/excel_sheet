@@ -86,7 +86,7 @@ def manage_patients(request, patient_id=None):
         hospital = get_object_or_404(Hospital)
 
     PatientForm = modelform_factory(Patient)
-    DiagnosisForm = modelform_factory(Diagnosis, fields =('diagnosis','votes',))
+    DiagnosisForm = modelform_factory(Diagnosis, fields =('diagnosis',))
     HospitalForm = modelform_factory(Hospital, fields = ('hospital_name',))
     if request.method == 'POST':
         form = PatientForm(request.POST, instance=patient)

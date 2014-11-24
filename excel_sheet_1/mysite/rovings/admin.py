@@ -19,7 +19,7 @@ class DiagnosisInline(admin.TabularInline):
 
 class HospitalInline(admin.TabularInline):
     model = Hospital
-    extra = 2
+    extra = 0
 
 
 

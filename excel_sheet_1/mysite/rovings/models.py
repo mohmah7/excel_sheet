@@ -39,7 +39,6 @@ class Patient(models.Model):
 class Diagnosis(models.Model):
     patient = models.ForeignKey(Patient)
     diagnosis = models.CharField(max_length=100)
-    votes = models.IntegerField(default=0)
     def __unicode__(self):
         return self.diagnosis
 

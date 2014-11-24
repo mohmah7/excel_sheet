@@ -3,6 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="5e92a514-2a6c-4ee0-9dc6-984801079714" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/excel_sheet_1/mysite/rovings/admin.py" afterPath="$PROJECT_DIR$/excel_sheet_1/mysite/rovings/admin.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/excel_sheet_1/mysite/rovings/models.py" afterPath="$PROJECT_DIR$/excel_sheet_1/mysite/rovings/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/excel_sheet_1/mysite/rovings/views.py" afterPath="$PROJECT_DIR$/excel_sheet_1/mysite/rovings/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="excel_sheet.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,11 +28,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/excel_sheet_1/mysite/rovings/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.68" vertical-offset="1438" max-vertical-offset="2340">
-              <caret line="112" column="149" selection-start-line="112" selection-start-column="149" selection-end-line="112" selection-end-column="149" />
+            <state vertical-scroll-proportion="0.20632531" vertical-offset="1183" max-vertical-offset="2340">
+              <caret line="88" column="69" selection-start-line="88" selection-start-column="69" selection-end-line="88" selection-end-column="69" />
               <folding>
                 <element signature="e#0#55#0" expanded="true" />
               </folding>
@@ -72,8 +75,8 @@
       <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/excel_sheet_1/mysite/rovings/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-16.8" vertical-offset="0" max-vertical-offset="960">
-              <caret line="28" column="4" selection-start-line="28" selection-start-column="4" selection-end-line="28" selection-end-column="13" />
+            <state vertical-scroll-proportion="-22.2" vertical-offset="60" max-vertical-offset="945">
+              <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -81,11 +84,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="admin.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="admin.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/excel_sheet_1/mysite/rovings/admin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.68980795" vertical-offset="73" max-vertical-offset="990">
-              <caret line="36" column="27" selection-start-line="36" selection-start-column="27" selection-end-line="36" selection-end-column="27" />
+            <state vertical-scroll-proportion="-6.68" vertical-offset="148" max-vertical-offset="990">
+              <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -151,9 +154,9 @@
         <option value="$PROJECT_DIR$/excel_sheet_1/mysite/rovings/templates/rovings/index.html" />
         <option value="$PROJECT_DIR$/excel_sheet_1/mysite/rovings/urls.py" />
         <option value="$PROJECT_DIR$/excel_sheet_1/mysite/rovings/templates/rovings/add_pt.html" />
-        <option value="$PROJECT_DIR$/excel_sheet_1/mysite/rovings/views.py" />
         <option value="$PROJECT_DIR$/excel_sheet_1/mysite/rovings/models.py" />
         <option value="$PROJECT_DIR$/excel_sheet_1/mysite/rovings/admin.py" />
+        <option value="$PROJECT_DIR$/excel_sheet_1/mysite/rovings/views.py" />
       </list>
     </option>
   </component>
@@ -544,20 +547,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/excel_sheet_1/mysite/rovings/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.68" vertical-offset="1438" max-vertical-offset="2340">
-          <caret line="112" column="149" selection-start-line="112" selection-start-column="149" selection-end-line="112" selection-end-column="149" />
-          <folding>
-            <element signature="e#0#55#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/excel_sheet_1/mysite/rovings/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.8" vertical-offset="0" max-vertical-offset="960">
-          <caret line="28" column="4" selection-start-line="28" selection-start-column="4" selection-end-line="28" selection-end-column="13" />
+        <state vertical-scroll-proportion="-22.2" vertical-offset="60" max-vertical-offset="945">
+          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
@@ -566,10 +559,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/excel_sheet_1/mysite/rovings/admin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.68980795" vertical-offset="73" max-vertical-offset="990">
-          <caret line="36" column="27" selection-start-line="36" selection-start-column="27" selection-end-line="36" selection-end-column="27" />
+        <state vertical-scroll-proportion="-6.68" vertical-offset="148" max-vertical-offset="990">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/excel_sheet_1/mysite/rovings/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.20632531" vertical-offset="1183" max-vertical-offset="2340">
+          <caret line="88" column="69" selection-start-line="88" selection-start-column="69" selection-end-line="88" selection-end-column="69" />
+          <folding>
+            <element signature="e#0#55#0" expanded="true" />
           </folding>
         </state>
       </provider>
