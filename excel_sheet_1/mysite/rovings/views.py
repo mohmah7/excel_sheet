@@ -78,15 +78,18 @@ def manage_patients(request, patient_id=None):
     message = "Saving new patient"
     if patient_id:
         patient = get_object_or_404(Patient, pk=patient_id)
-        diagnosis = get_object_or_404(Diagnosis)
+        diagnosis = get_object_or_404(Diagnosis , pk=patient_id)
 
     PatientForm = modelform_factory(Patient)
-    DiagnosisForm = modelform_factory(Diagnosis)
+    DiagnosisForm = modelform_factory(Diagnosis, fields =('diagnosis','votes',))
     if request.method == 'POST':
         form = PatientForm(request.POST, instance=patient)
         form_diagnosis = DiagnosisForm(request.POST, instance = diagnosis)
-        if form.is_valid():
+        if form.is_valid() & form_diagnosis.is_valid():
             patient = form.save()
+            patient_diagnosis = form_diagnosis.save(commit = False)
+            patient_diagnosis.patient=patient
+            patient_diagnosis.save()
             message = "Successfuly saved patient"
             return HttpResponseRedirect(reverse('rovings:patient_edit', kwargs={'patient_id':str(patient.pk)}))   
     else:
