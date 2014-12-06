@@ -44,7 +44,7 @@ class PollAdmin(admin.ModelAdmin):
 
     ]
     inlines = [DiagnosisInline, HospitalInline]
-    list_display = ('ptname', 'visit_date','app_number')
+    list_display = ('ptname', 'visit_date','app_number','admission_date')
     list_filter = ['ptname']
     search_fields = ['ptname']
 

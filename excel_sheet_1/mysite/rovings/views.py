@@ -13,7 +13,7 @@ from django.views.generic import View
 from rovings.models import Patient , Diagnosis, Hospital
 
 def index(request):
-    latest_poll_list = Patient.objects.all().order_by('-pub_date')
+    latest_poll_list = Patient.objects.all().order_by('-admission_date')
     #p= Patient(ptname ="mefnamicacid",pub_date=timezone.now())
     #p.save()
     context = {'latest_poll_list': latest_poll_list}

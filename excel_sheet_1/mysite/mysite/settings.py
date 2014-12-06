@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rovings',
+
 )
 
 MIDDLEWARE_CLASSES = (
@@ -61,7 +62,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Medgulf2',
+        'NAME': 'Medgulf3',
         'USER':'root',
         'PASSWORD':'',
         'HOST':'localhost',
